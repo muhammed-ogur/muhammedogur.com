@@ -1,7 +1,12 @@
 # muhammedogur.com
 
-Personal site of Muhammed Oğur, built from an empty server.
+Personal site of Muhammed Oğur, built from an empty Linux server.
 
-Currently we are at seciton B1 and we create our first repo at github and we made our first commit.
+## Status
 
-Currently we are at seciton B1 and we create our first repo at github and we made our first commit.
+Work in progress. The repository and its base configuration are in place.
+Server setup comes next.
+
+## Goal
+
+A single HTML page served over HTTPS at muhammedogur.com.
