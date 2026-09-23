@@ -6,3 +6,17 @@
 # Editor leftovers
 *.swp
 *~
+
+# IDEs and editors: Rider & VS Code
+.idea/
+.vscode/
+
+# Windows specifics (including WSL copy artifacts)
+Thumbs.db
+*:Zone.Identifier
+
+# macOS specifics
+.DS_Store
+
+# Node / TypeScript dependencies
+node_modules/
