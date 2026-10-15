@@ -41,6 +41,7 @@ Gerekçe: semboller US'te tek tuş ya da ana sıraya yakın; Türkçe harfler ge
 ## Sonuçlar
 - Kazanç: Kod sembolleri, kısayollar ve Türkçe karakterler tek düzende, geçişsiz.
 - Bedel: Alışma döneminde hız düştü (baz: Türkçe Q 38 wpm, %87 doğruluk → hibrit 1. gün 20 wpm, %85; bazın %53'ü). Başka bir bilgisayarda kurulum gerekiyor (MSKLC paketi + firmware ayarı); kurulumun yasak olduğu bir iş bilgisayarında Win+Space ile US/TR geçişine dönülür.
+- Kısıt (2026-10-14): AltGr, Windows'ta Ctrl+Alt sayılır. Bu yüzden hiçbir uygulamaya Ctrl+Alt + s, g, u, o, c, i, a, t, e kısayolu atanmaz; atanırsa o Türkçe harf yazılamaz (Google Drive'ın Ctrl+Alt+G kısayolu ğ harfini engelledi).
 
 ## Yeniden bakma tetikleyicisi
 - 3 hafta sonunda (2026-11-02) hibrit düzende Türkçe wpm, Türkçe Q bazının (38 wpm) altında kalırsa.
