@@ -1,6 +1,6 @@
 # Sunucu envanteri
 
-> Son doğrulama: 2026-10-28 · Yöntem: aşağıdaki komutlar (salt okuma)
+> Son doğrulama: 2026-10-29 · Yöntem: aşağıdaki komutlar (salt okuma)
 > IP adresi bilerek yazılmadı (bkz. dns.md). Sır yok.
 
 ## Sistem
@@ -21,25 +21,26 @@
 | 53 | systemd-resolved | yalnız sunucu içi (127.0.0.53/54) |
 
 ## Kullanıcılar ve zamanlanmış işler
-- Oturum açabilen: yalnız root (`sync` sistem hesabı, kabuk vermez)
+- Oturum açabilen: root (SSH ile girişi kapalı), **muhammed** (sudo grubunda) · `sync` sistem hesabı kabuk vermez
+- muhammed için yetkili anahtar: 1 adet (`muhammed@MOGUR masaustu`)
 - root crontab: yok
 
 ## Güvenlik (bugünkü durum)
-- ufw: **aktif** · varsayılan: gelen deny, giden allow · izin: 22/tcp, 80,443/tcp (IPv4 + IPv6) (`ufw status verbose`)
-- fail2ban: aktif, `sshd` jail açık (`fail2ban-client status sshd`; kurulumdan dakikalar sonra 3 IP yasaklandı)
+- SSH: **root girişi kapalı, parola kapalı, yalnız anahtar** (`sshd -T`) · ayar: `/etc/ssh/sshd_config.d/10-sertlestirme.conf` (depoda: `server/etc/ssh/sshd_config.d/`)
+  - `10-` öneki: sonradan gelebilecek `50-cloud-init.conf` gibi dosyalardan önce okunsun (ilk okunan değer kazanır)
+- ufw: aktif · varsayılan: gelen deny, giden allow · izin: 22/tcp, 80,443/tcp (IPv4 + IPv6)
+- fail2ban: aktif, `sshd` jail açık
 - Otomatik güncelleme: unattended-upgrades açık, günlük (`/etc/apt/apt.conf.d/20auto-upgrades`)
-- SSH: root girişi açık, parola açık, anahtar açık (`sshd -T`) — **B2.2'de kapanacak**
-- root için yetkili anahtar: 1 adet (`muhammed@MOGUR masaustu`)
 
 ## Değişiklik geçmişi
 - 2026-10-27: root'a SSH anahtarı eklendi (B2.1)
 - 2026-10-27: nginx kaldırıldı (`apt purge nginx nginx-common`); 80 portunda eski bir şablon site yayındaydı
 - 2026-10-28: 34 paket güncellendi, yeniden başlatıldı (çekirdek 7.0.0-31 → 7.0.0-42)
-- 2026-10-28: ufw etkinleştirildi (ölü adam anahtarıyla: `systemd-run --on-active=5m ufw disable`, test sonrası iptal)
-- 2026-10-28: fail2ban kuruldu
+- 2026-10-28: ufw etkinleştirildi (ölü adam anahtarıyla), fail2ban kuruldu
+- 2026-10-29: `muhammed` kullanıcısı (sudo) + anahtar; root ve parola ile SSH girişi kapatıldı (ölü adam anahtarıyla, 3 test)
 
 ## Açık işler
-- Normal kullanıcı aç; root ve parola girişini kapat (B2.2) — botlar parola deniyor, acil
 - `/var/www/html` altındaki eski şablon dosyalarını sil
+- root'un `authorized_keys` dosyası: root girişi kapalı olduğu için etkisiz; temizlikte boşaltılabilir
 - Eski çekirdek paketleri (7.0.0-31): birkaç gün sorunsuz geçince `apt autoremove`
 - Gereksiz servisler: ModemManager, upower, udisks2, multipathd (değerlendirilecek)
