@@ -1,0 +1,4 @@
+muhammedogur.com {
+	root * /var/www/muhammedogur.com/site
+	file_server
+}
